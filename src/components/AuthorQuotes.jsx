@@ -1,5 +1,7 @@
 export function AuthorQuote () {
   return (
-   <h1>hola</h1>
+   <section>
+    <h2></h2>
+   </section>
   )
 }
