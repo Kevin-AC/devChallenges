@@ -9,7 +9,6 @@ export function AuthorQuote ({ quoteAuthor }) {
       .then(res => res.json())
       .then(response => {
         setQuote(response.data)
-        console.log(response.data)
       })
   }, [quoteAuthor])
   return (
