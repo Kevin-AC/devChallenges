@@ -40,7 +40,7 @@ function App () {
       <Router>
         <Routes>
           <Route path='/' element={
-          <main className='flex flex-col gap-10'>
+          <main className='w-full flex flex-col items-center gap-10'>
               <Quote quoteText={quote.quoteText} />
               <CardAuthor
                 quoteAuthor={quote.quoteAuthor}
