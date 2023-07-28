@@ -1,19 +1,11 @@
 import 'material-symbols'
 import { CardAuthor, Footer, AuthorQuote, Quote } from './components'
-
-import { useEffect, useState } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import { getQuote } from './services/quote'
-
+import { useRandom } from './hooks/useRandom'
 function App () {
-  const [quote, setQuote] = useState()
-
-  useEffect(() => {
-    getQuote().then(setQuote)
-  }, [])
-
+  const { quote, getRandomQuote } = useRandom()
   const handleClick = () => {
-    getQuote().then(setQuote)
+    getRandomQuote()
   }
   return (
     <div className='w-screen p-9 flex flex-col justify-center items-center gap-8 min-h-screen bg-bg  font-Raleway  relative'>
