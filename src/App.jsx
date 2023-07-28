@@ -7,27 +7,17 @@ import { Quote } from './components/Quote'
 import { useEffect, useState } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { AuthorQuote } from './components/AuthorQuotes'
-const API = 'https://quote-garden.onrender.com/api/v3/quotes/random'
+import { getQuote } from './services/quote'
+
 function App () {
-  const [quote, setQuote] = useState('')
+  const [quote, setQuote] = useState()
+
   useEffect(() => {
-    fetch(API)
-      .then(res => res.json())
-      .then(response => {
-        const data = response.data[0]
-        setQuote(data)
-      }
-      )
+    getQuote().then(setQuote)
   }, [])
 
   const handleClick = () => {
-    fetch(API)
-      .then(res => res.json())
-      .then(response => {
-        const data = response.data[0]
-        setQuote(data)
-      }
-      )
+    getQuote().then(setQuote)
   }
   return (
     <div className='w-screen p-9 flex flex-col justify-center items-center gap-8 min-h-screen bg-bg  font-Raleway  relative'>
@@ -41,15 +31,16 @@ function App () {
         <Routes>
           <Route path='/' element={
           <main className='w-full flex flex-col items-center gap-10'>
-              <Quote quoteText={quote.quoteText} />
-              <CardAuthor
-                quoteAuthor={quote.quoteAuthor}
-                quoteGenre={quote.quoteGenre}
-              />
+                <Quote quoteText={quote?.quoteText} />
+                <CardAuthor
+                  quoteAuthor={quote?.quoteAuthor}
+                  quoteGenre={quote?.quoteGenre}
+                />
+
           </main>
         }/>
         <Route path='/Author' element={
-          <AuthorQuote quoteAuthor={quote.quoteAuthor}/>
+          <AuthorQuote quoteAuthor={quote?.quoteAuthor}/>
         } />
         </Routes>
       </Router>
