@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line react/prop-types
-export function CardAuthor ({ quoteAuthor, quoteGenre }) {
+export default function CardAuthor ({ quoteAuthor, quoteGenre }) {
   return (
     <Link to='/Author' className='w-full lg:w-[672px] h-[151px]  p-9 flex justify-between items-center group hover:bg-card hover:text-white '>
       <div className='flex  flex-col items-start'>

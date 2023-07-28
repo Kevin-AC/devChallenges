@@ -1,12 +1,8 @@
-// https://quote-garden.onrender.com/api/v3/quotes?author=Bill+Gates
-
 import 'material-symbols'
-import { CardAuthor } from './components/CardAuthor'
-import { Footer } from './components/Footer'
-import { Quote } from './components/Quote'
+import { CardAuthor, Footer, AuthorQuote, Quote } from './components'
+
 import { useEffect, useState } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import { AuthorQuote } from './components/AuthorQuotes'
 import { getQuote } from './services/quote'
 
 function App () {

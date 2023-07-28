@@ -1,9 +1,9 @@
 import { useAuthorQuotes } from '../hooks/useAuthorQuotes'
-import { Quote } from './Quote'
+import { Quote } from './index'
 
 /* eslint-disable react/prop-types */
 
-export function AuthorQuote ({ quoteAuthor }) {
+export default function AuthorQuote ({ quoteAuthor }) {
   const { Authorquote } = useAuthorQuotes({ quoteAuthor })
   return (
    <section className='flex flex-col gap-20 mb-10'>
