@@ -1,9 +1,12 @@
 import { IconCurrentLocation, IconMapPinFilled } from '@tabler/icons-react'
 import { useWeather } from '../hooks/useWeather'
-
+import { useMapedWeather } from '../hooks/useMapedWeather'
+import { formatDate } from '../utils/formatDate'
 export function CurrentWeather () {
   const { data } = useWeather()
-
+  const { daysList } = useMapedWeather()
+  const today = daysList[0].date
+  const formattedDate = formatDate(today)
   return (
     <section className="w-full h-screen   bg-cardBG  relative">
       <div className='absolute w-full h-full imgBG'></div>
@@ -17,7 +20,7 @@ export function CurrentWeather () {
         <p className='text-5xl font-medium text-secundaryText'>{data?.weather[0].description}</p>
         <div className='flex gap-2 text-lg text-infoText'>
           <p>Today</p>
-          <p>Fri,5 jun</p>
+          <p>{formattedDate}</p>
         </div>
         <div className='flex gap-2 text-infoText font-medium'>
           <IconMapPinFilled />
