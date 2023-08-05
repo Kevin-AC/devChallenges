@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+   background-color: #100E1D;
+}
+.imgBG{
+    background-image: url("/public/Cloud-background.png");
+    opacity: 10%;
+    background-repeat: no-repeat;
+    background-position: center 20% ;
+}
