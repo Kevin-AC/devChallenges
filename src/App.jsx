@@ -2,16 +2,18 @@ import { Card } from './components/Card'
 import { ParametersCard } from './components/ParametersCard'
 import { CurrentWeather } from './components/CurrentWeather'
 import { useMapedWeather } from './hooks/useMapedWeather'
+import { useMapedForecast } from './hooks/useMapedForecast'
 
 function App () {
   const { daysList } = useMapedWeather()
   // console.log(daysList)
+  const { data } = useMapedForecast()
 
   return (
-    <div className="font-Raleway grid place-items-center min-h-screen">
+    <div className="w-full h-screen font-Raleway flex flex-col items-center lg:justify-center lg:flex-row lg:relative ">
       <CurrentWeather/>
-      <main className='w-full h-auto grid place-items-center p-6 gap-8' >
-        <section className='grid grid-cols-2 place-content-center gap-6 '>
+      <main className='w-full  grid place-items-center p-6 gap-8 lg:w-4/5 ' >
+        <section className='grid grid-cols-2 place-content-center gap-6 lg:flex'>
           {
             daysList.map((day, index) => (
               <Card key={index}
@@ -23,16 +25,15 @@ function App () {
           }
 
         </section>
-        <h2 className='text-4xl text-primaryText font-semibold'>Today’s Hightlights </h2>
-        <section className='flex flex-wrap gap-4 justify-center'>
-
-          <ParametersCard/>
-          <ParametersCard />
-          <ParametersCard />
-          <ParametersCard />
+        <h2 className='text-4xl text-primaryText font-semibold lg:-ml-[360px]'>Today’s Hightlights </h2>
+        <section className='flex flex-wrap gap-4 justify-center lg:gap-8'>
+          <ParametersCard title='Wind Status' parameter={data.wind} measure='mph'/>
+          <ParametersCard title='Humidity' parameter={data.humidity} humidity={data.humidity} measure='%' />
+          <ParametersCard title='Visibility' parameter={(data.visibility / 1609.34).toFixed(2)}measure='miles' />
+          <ParametersCard title='Pressure' parameter={data.pressure} measure='mb'/>
         </section>
       </main>
-      <footer className='my-8 text-secundaryText'>created by username - devChallenges.io</footer>
+      <footer className='my-8 text-secundaryText lg:absolute lg:bottom-0 lg:my-0'>created by Kevin-AC devChallenges.io</footer>
     </div>
   )
 }

@@ -7,9 +7,27 @@
 body{
    background-color: #100E1D;
 }
+
+progress::-webkit-progress-bar {
+  background-color: #f1f1f1; /* Color de fondo */
+  border-radius: 16px ;  /* Borde redondeado */
+}
+progress::-webkit-progress-value {
+  background-color: #afa84c; /* Color de relleno */
+  
+}
+progress::-webkit-progress-value::before {
+  content: '50%'; /* Contenido (puedes usar JavaScript para mostrar el porcentaje real) */
+  position: absolute;
+  right: 10px; /* Posición del texto en la barra */
+  top: 2px; /* Posición del texto en la barra */
+  font-size: 12px;
+  color: #fff; /* Color del texto */
+}
 .imgBG{
     background-image: url("/Cloud-background.png");
     opacity: 10%;
     background-repeat: no-repeat;
-    background-position: center 20% ;
+    background-position: center 0% ;
 }
+

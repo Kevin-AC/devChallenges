@@ -1,30 +1,47 @@
-import { IconCurrentLocation, IconMapPinFilled } from '@tabler/icons-react'
-import { useWeather } from '../hooks/useWeather'
+import { IconCurrentLocation, IconMapPinFilled, IconX, IconSearch } from '@tabler/icons-react'
+import { useMapedForecast } from '../hooks/useMapedForecast'
 import { useMapedWeather } from '../hooks/useMapedWeather'
 import { formatDate } from '../utils/formatDate'
+import { useState } from 'react'
 export function CurrentWeather () {
-  const { data } = useWeather()
+  const [open, setOpen] = useState(false)
   const { daysList } = useMapedWeather()
+  const { data } = useMapedForecast()
   const today = daysList[0].date
   const formattedDate = formatDate(today)
+  const handleClick = () => {
+    setOpen(!open)
+    console.log('open')
+  }
+
   return (
-    <section className="w-full h-screen   bg-cardBG  relative">
-      <div className='absolute w-full h-full imgBG'></div>
-      <header className='text-primaryText flex justify-between p-5'>
-        <button className='bg-buttonSeachP w-[161px] h-[40px]'>Search for place</button>
+    <section className="w-full h-screen bg-cardBG relative lg:w-2/5">
+      <header className='text-primaryText flex justify-between p-5 z-50 '>
+        <button className='bg-buttonSeachP w-[161px] h-[40px]' onClick={handleClick}>Search for place</button>
         <button className='bg-buttonSeachP w-[40px] h-[40px] rounded-full grid place-items-center'><IconCurrentLocation /></button>
       </header>
-      <article className=' w-full mt-16 h-auto grid place-items-center gap-8'>
+      { open &&
+        <section className='bg-cardBG w-full h-full absolute  top-0 z-40 p-4'>
+          <button className='text-primaryText absolute right-4 ' onClick={handleClick}><IconX /></button>
+          <div className='flex gap-4 top-14 relative  text-infoText'>
+            <span className='absolute  pt-3 pl-3 '><IconSearch /></span>
+            <input className='bg-cardBG h-12 w-full border-primaryText border pl-10  placeholder:text-infoText ' type="text" name="search" id="search" placeholder='search location' />
+            <button className='bg-buttonSearch text-primaryText w-[86px] h-12 font-medium'>search</button>
+          </div>
+        </section>
+      }
+      <div className='absolute w-full h-96 imgBG z-10 '></div>
+      <article className='w-full mt-16 mb-4 h-auto grid place-items-center gap-8 '>
         <img src="/Shower.png" alt="" />
-        <p className='text-8xl font-medium text-primaryText'>{data?.main.temp}<span className='text-6xl font-normal text-secundaryText'>°c</span> </p>
-        <p className='text-5xl font-medium text-secundaryText'>{data?.weather[0].description}</p>
+        <p className='text-8xl font-medium text-primaryText'>{data.temp}<span className='text-6xl font-normal text-secundaryText'>°c</span> </p>
+        <p className='text-5xl font-medium text-secundaryText'>{data.description}</p>
         <div className='flex gap-2 text-lg text-infoText'>
           <p>Today</p>
           <p>{formattedDate}</p>
         </div>
         <div className='flex gap-2 text-infoText font-medium'>
           <IconMapPinFilled />
-          <p>{data?.name}</p>
+          <p>{data.city}</p>
         </div>
       </article>
     </section>
