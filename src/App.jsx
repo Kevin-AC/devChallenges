@@ -10,10 +10,10 @@ function App () {
   const { data } = useMapedForecast()
 
   return (
-    <div className="w-full h-screen font-Raleway flex flex-col items-center lg:justify-center lg:flex-row lg:relative ">
+    <div className="w-full h-screen font-Raleway flex flex-col items-center lg:justify-center lg:flex-row lg:relative lg:overflow-hidden">
       <CurrentWeather/>
-      <main className='w-full  grid place-items-center p-6 gap-8 lg:w-4/5 ' >
-        <section className='grid grid-cols-2 place-content-center gap-6 lg:flex'>
+      <main className='w-full py-4 grid place-items-center  gap-8 lg:w-4/5 ' >
+        <section className='grid grid-cols-2  gap-6 lg:flex '>
           {
             daysList.map((day, index) => (
               <Card key={index}
@@ -25,8 +25,8 @@ function App () {
           }
 
         </section>
-        <h2 className='text-4xl text-primaryText font-semibold lg:-ml-[360px]'>Today’s Hightlights </h2>
-        <section className='flex flex-wrap gap-4 justify-center lg:gap-8'>
+        <h2 className='text-4xl text-primaryText font-semibold '>Today’s Hightlights </h2>
+        <section className='grid lg:grid-cols-2 gap-4  lg:gap-8 '>
           <ParametersCard title='Wind Status' parameter={data.wind} measure='mph'/>
           <ParametersCard title='Humidity' parameter={data.humidity} humidity={data.humidity} measure='%' />
           <ParametersCard title='Visibility' parameter={(data.visibility / 1609.34).toFixed(2)}measure='miles' />

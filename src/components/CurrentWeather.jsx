@@ -1,24 +1,33 @@
 import { IconCurrentLocation, IconMapPinFilled, IconX, IconSearch } from '@tabler/icons-react'
+import { useState } from 'react'
 import { useMapedForecast } from '../hooks/useMapedForecast'
 import { useMapedWeather } from '../hooks/useMapedWeather'
+import { useCoords } from '../hooks/useCoords'
 import { formatDate } from '../utils/formatDate'
-import { useState } from 'react'
+
+// import { getWeather } from '../services/Weather'
+
 export function CurrentWeather () {
   const [open, setOpen] = useState(false)
   const { daysList } = useMapedWeather()
   const { data } = useMapedForecast()
   const today = daysList[0].date
   const formattedDate = formatDate(today)
+  const { latitude, longitude } = useCoords()
   const handleClick = () => {
     setOpen(!open)
     console.log('open')
+  }
+  const handleLocation = () => {
+    console.log(latitude, longitude)
+    // getWeather(latitude, longitude)
   }
 
   return (
     <section className="w-full h-screen bg-cardBG relative lg:w-2/5">
       <header className='text-primaryText flex justify-between p-5 z-50 '>
         <button className='bg-buttonSeachP w-[161px] h-[40px]' onClick={handleClick}>Search for place</button>
-        <button className='bg-buttonSeachP w-[40px] h-[40px] rounded-full grid place-items-center'><IconCurrentLocation /></button>
+        <button className='bg-buttonSeachP w-[40px] h-[40px] rounded-full grid place-items-center' onClick={handleLocation}><IconCurrentLocation /></button>
       </header>
       { open &&
         <section className='bg-cardBG w-full h-full absolute  top-0 z-40 p-4'>
@@ -32,9 +41,9 @@ export function CurrentWeather () {
       }
       <div className='absolute w-full h-96 imgBG z-10 '></div>
       <article className='w-full mt-16 mb-4 h-auto grid place-items-center gap-8 '>
-        <img src="/Shower.png" alt="" />
-        <p className='text-8xl font-medium text-primaryText'>{data.temp}<span className='text-6xl font-normal text-secundaryText'>°c</span> </p>
-        <p className='text-5xl font-medium text-secundaryText'>{data.description}</p>
+        <img width={150} src="/Shower.png" alt="" />
+        <p className='text-6xl font-medium text-primaryText'>{data.temp}<span className='text-6xl font-normal text-secundaryText'>°c</span> </p>
+        <p className='text-4xl font-medium text-secundaryText'>{data.description}</p>
         <div className='flex gap-2 text-lg text-infoText'>
           <p>Today</p>
           <p>{formattedDate}</p>
