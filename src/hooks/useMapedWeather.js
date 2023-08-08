@@ -1,7 +1,8 @@
 import { useLastDayWeather } from './useLastdayWeather'
-
+import { useCoords } from './useCoords'
 export function useMapedWeather () {
-  const { days } = useLastDayWeather()
+  const { latitude, longitude } = useCoords()
+  const { days } = useLastDayWeather(latitude, longitude)
   // console.log(days)
   const mappedWeather = []
   const indice = [0, 6, 14, 22, 30]

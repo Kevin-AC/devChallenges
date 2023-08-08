@@ -1,10 +1,10 @@
-// const LOCAL_WEATHER_API = 'Api/Apartado.json'
+const LOCAL_WEATHER_API = 'Api/Apartado.json'
 
 export const getWeather = (latitude, longitude) => {
   if (latitude && longitude) {
-    console.log(latitude, longitude)
-    const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=0a24c3c97422d75fef0a7cd0b54595d4`
-    return fetch(WEATHER_API)
+    //  console.log(latitude, longitude)
+    // const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=0a24c3c97422d75fef0a7cd0b54595d4`
+    return fetch(LOCAL_WEATHER_API)
       .then(resp => resp.json())
       .then(data => {
         const respose = data

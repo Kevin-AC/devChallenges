@@ -8,7 +8,6 @@ export function useCoords () {
       navigator.geolocation.getCurrentPosition(function (position) {
         setLatitude(position.coords.latitude)
         setLongitude(position.coords.longitude)
-        console.log(position.coords.latitude, position.coords.longitude)
       })
     }
   }, [])
