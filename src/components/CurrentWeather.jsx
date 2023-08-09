@@ -21,7 +21,7 @@ export function CurrentWeather () {
   const handleLocation = () => {
     console.log(latitude, longitude)
   }
-
+  const icons = `https://openweathermap.org/img/wn/${data.WeatherIcon}@2x.png`
   return (
     <section className="w-full h-screen bg-cardBG relative lg:w-2/5">
       <header className='text-primaryText flex justify-between p-5 z-50 '>
@@ -40,7 +40,7 @@ export function CurrentWeather () {
       }
       <div className='absolute w-full h-96 imgBG z-10 '></div>
       <article className='w-full mt-16 mb-4 h-auto grid place-items-center gap-8 '>
-        <img width={150} src="/Shower.png" alt="" />
+        <img width={150} src={icons} alt="weather icon" />
         <p className='text-6xl font-medium text-primaryText'>{data.temp}<span className='text-6xl font-normal text-secundaryText'>°c</span> </p>
         <p className='text-4xl font-medium text-secundaryText'>{data.description}</p>
         <div className='flex gap-2 text-lg text-infoText'>
