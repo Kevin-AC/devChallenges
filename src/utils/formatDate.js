@@ -1,8 +1,13 @@
-export function formatDate (dateString) {
+export function formatDate (dateString, timezone) {
+  if (!timezone) return
+  const options = {
+    timeZone: `Etc/GMT${timezone / 3600}`,
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short'
+  }
   const fecha = new Date(dateString)
-  const diaSemana = fecha.toLocaleString('en', { weekday: 'short' })
-  const dia = fecha.getDate()
-  const mes = fecha.toLocaleString('en', { month: 'short' })
-  const formattedDate = `${diaSemana}, ${dia} ${mes}`
+  const formattedDate = fecha.toLocaleString('en', options)
+
   return formattedDate
 }

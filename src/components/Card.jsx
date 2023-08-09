@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useMapedWeather } from '../hooks/useMapedWeather'
 import { formatDate } from '../utils/formatDate'
+
 export function Card ({ day, tempMax, tempMin }) {
-  const formattedDate = formatDate(day)
+  const { timezone } = useMapedWeather()
+  const formattedDate = formatDate(day, timezone)
+
   return (
     <article className="w-[120px] h-[177px] bg-cardBG grid place-items-center">
       <h2 className="text-base text-primaryText">{formattedDate}</h2>

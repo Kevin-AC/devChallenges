@@ -2,10 +2,12 @@ import { useLastDayWeather } from './useLastdayWeather'
 import { useCoords } from './useCoords'
 export function useMapedWeather () {
   const { latitude, longitude } = useCoords()
-  const { days } = useLastDayWeather(latitude, longitude)
-  // console.log(days)
+  const { days, timeZone } = useLastDayWeather(latitude, longitude)
+  const actualDay = days?.list[0].dt_txt.slice(0, 10)
+  // console.log(actualDay)
+  const timezone = timeZone
   const mappedWeather = []
-  const indice = [0, 6, 14, 22, 30]
+  const indice = [5, 13, 21, 29, 37]
 
   for (const index of indice) {
     const date = days?.list[index].dt_txt.slice(0, 10)
@@ -16,5 +18,5 @@ export function useMapedWeather () {
     })
   }
 
-  return { daysList: mappedWeather }
+  return { daysList: mappedWeather, timezone, actualDay }
 }

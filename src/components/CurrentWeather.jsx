@@ -5,14 +5,14 @@ import { useMapedWeather } from '../hooks/useMapedWeather'
 import { useCoords } from '../hooks/useCoords'
 import { formatDate } from '../utils/formatDate'
 
-// import { getWeather } from '../services/Weather'
-
 export function CurrentWeather () {
   const [open, setOpen] = useState(false)
-  const { daysList } = useMapedWeather()
+  const { timezone, actualDay } = useMapedWeather()
   const { data } = useMapedForecast()
-  const today = daysList[0].date
-  const formattedDate = formatDate(today)
+  const timeZone = timezone
+  const today = actualDay
+  const formattedDate = formatDate(today, timeZone)
+
   const { latitude, longitude } = useCoords()
   const handleClick = () => {
     setOpen(!open)
@@ -20,7 +20,6 @@ export function CurrentWeather () {
   }
   const handleLocation = () => {
     console.log(latitude, longitude)
-    // getWeather(latitude, longitude)
   }
 
   return (
