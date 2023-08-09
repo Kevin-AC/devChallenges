@@ -20,6 +20,7 @@ function App () {
                 day={day.date}
                 tempMax={day.tempMax}
                 tempMin={day.tempMin}
+                icon={day.icon}
               />
             ))
           }

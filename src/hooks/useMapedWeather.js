@@ -11,10 +11,11 @@ export function useMapedWeather () {
 
   for (const index of indice) {
     const date = days?.list[index].dt_txt.slice(0, 10)
+    const icon = days?.list[index].weather[0].icon
     const tempMax = days?.list[index].main.temp_max.toFixed()
     const tempMin = days?.list[index].main.temp_min.toFixed()
     mappedWeather.push({
-      date, tempMax, tempMin
+      date, tempMax, tempMin, icon
     })
   }
 
